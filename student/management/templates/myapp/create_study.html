@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Study</title>
+</head>
+<body>
+    <h1>Add Study</h1>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}  <!-- Render form fields -->
+        <button type="submit">Save Study</button>
+    </form>
+    <a href="{% url 'study_list' %}">Cancel</a>
+</body>
+</html>

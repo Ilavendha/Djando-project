@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Study List</title>
+    <style>
+        /* Basic styling for the table */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+        .button {
+            padding: 5px 10px;
+            background-color: #4CAF50; /* Green */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .button:hover {
+            background-color: #45a049; /* Darker green */
+        }
+    </style>
+</head>
+<body>
+    <h1>Study List</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Study Name</th>
+                <th>Study Phase</th>
+                <th>Sponsor Name</th>
+                <th>Study Description</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for study in studies %}
+                <tr>
+                    <td>{{ study.study_name }}</td>
+                    <td>{{ study.study_phase }}</td>
+                    <td>{{ study.sponsor_name }}</td>
+                    <td>{{ study.study_description }}</td>
+                    <td>
+                        <a href="{% url 'delete_study' study.pk %}">
+                            <button class="button">Delete</button>
+                        </a>
+                    </td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="5">No studies available.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="{% url 'create_study' %}">
+        <button class="button">Add New Study</button>
+    </a>
+</body>
+</html>
